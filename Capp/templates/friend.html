@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block heading %}
+  index
+{% endblock heading %}
+
+{% block body  %}
+
+{% include "header.html" %}
+<form class="form-signin" action="{{ url_for('friend') }}" method="post" >
+  <ul>
+    {% for user in users if user.email != session.email %}
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{ user.email }}" id="defaultCheck1" name="checkbox">
+            <label class="form-check-label" for="defaultCheck1">
+              {{ user.email }}
+            </label>
+          </div>
+        </li>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Add</button>
+
+  </ul>
+</form>
+
+{% endblock body  %}

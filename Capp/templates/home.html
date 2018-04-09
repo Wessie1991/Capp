@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  index
+{% endblock heading %}
+
+
+{% block body  %}
+
+{% include "header.html" %}
+
+<script type="text/javascript" src="{{ url_for('static',filename='javascript/sidebar.js') }}"></script>
+
+{% include "sidebar.html" %}
+
+<div id="chat_scherm">
+  <script type="text/javascript" src="{{ url_for('static',filename='javascript/chat.js') }}"></script>
+    <div class="container">
+       <div class="row">
+      <div class="col-lg-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><b id="friend_email"> Ishwar </b> <small>online</small></div>
+          <div id="panel_body" class="panel-body"  style="background:url('http://subtlepatterns.com/patterns/geometry2.png');height: 300px; }">
+          </div>
+        </div>
+        <div class="row">
+            <form id='sendform'  autocomplete="off" >
+            <div class="form-group">
+              <div class="col-lg-9">
+                <input id="message"  class="form-control"  type="text">
+              </div>
+              <input id="sendsubmit" type="submit" value="Send" class="btn btn-success">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+
+
+<h1 id="log"> hallo </h1>
+
+
+{% endblock body  %}

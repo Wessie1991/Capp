@@ -1,0 +1,52 @@
+h1 {
+  text-align: center;
+}
+
+.loginBox{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+.innerBox{
+  width: 100px;
+}
+
+
+
+.me{
+    font-size: 14px;
+    margin: -4px;
+    border-right: 3px solid #60DF88 !important;
+    padding: 5px;
+    background-color: rgb(239, 255, 241);
+}
+
+.you{
+    font-size: 14px;
+    margin: -4px;
+    border-left: 3px solid rgb(255, 112, 0) !important;
+    padding: 5px;
+    padding-left:10px;
+    background-color: rgb(247, 247, 214);
+}
+a.friend_list{
+  cursor: pointer;
+}
+
+#panel_body{
+  overflow-y: scroll;
+}
+
+.notification_circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 16px;
+  text-align: center;
+  background: rgb(255,112,0);
+}

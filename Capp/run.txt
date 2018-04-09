@@ -1,0 +1,1 @@
+export FLASK_APP=export FLASK_APPxport FLASK_APP=/home/rekenmachine/CS50/Capp/Capp/views.py;export FLASK_DEBUG=1;flask run --host=0.0.0.0 --with-threads

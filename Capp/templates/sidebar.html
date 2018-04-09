@@ -1,0 +1,35 @@
+
+<div class="col-lg-3 sidebar">
+            <div class="bg-white shadow">
+
+
+              <div class="sidebar-menu">
+
+                <div class="sidebar-search-text">
+                    <input class="form-control" placeholder="Search Cranes in India" type="text">
+                </div>
+                <!-- Sidebar navigation -->
+                <ul class="nav sidebar-nav">
+                  {% for friend in friendList %}
+                  <li class="dropdown">
+                    <a id="{{ friend[0] }}" class="ripple-effect dropdown-toggle friend_list" data-friend="{{ friend[0] }}" data-toggle="dropdown">
+                      <span class="glyphicon glyphicon-user icon"></span>
+                      {{ friend[0] }}
+                      <div class="notification_circle {{ friend[0] }}" style="visibility: hidden"></div>
+                    </a>
+                  </li>
+
+                  {% endfor %}
+
+
+
+                </ul>
+                <!-- Sidebar divider -->
+              </div>
+              <!-- /.widget -->
+
+
+
+            </div>
+            <!-- /col 4 - sidebar -->
+</div>

@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+  index
+{% endblock heading %}
+
+{% block body  %}
+
+{% include "header.html" %}
+
+{% include "sidebar.html" %}
+
+
+
+<script type="text/javascript" src="{{ url_for('static',filename='javascript/chat.js') }}"></script>
+
+<div id="chat_scherm">
+
+  <div class="col-lg-3">
+    <div class="container">
+       <div class="row">
+      <div class="col-lg-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading"><b> Ishwar </b> <small>online</small></div>
+          <div class="panel-body"  style="background:url('http://subtlepatterns.com/patterns/geometry2.png');height: 300px; }">
+            {% for message in chatmessage %}
+              {% if message.users_send == email  %}
+                <div class="clearfix"><blockquote id='new_msg_id' class="me pull-right">{{ message.message }}</blockquote></div>
+              {% else %}
+                <div class="clearfix"><blockquote class="you pull-left">{{ message.message }}</blockquote></div>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+        </div>
+        <div class="row">
+            <form id='sendform' >
+            <div class="form-group">
+              <div class="col-lg-9">
+                <input id="message"  class="form-control"  type="text">
+              </div>
+              <input id="sendsubmit" type="submit" value="Send" class="btn btn-success">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+
+<h1 id="log"> hallo </h1>
+
+
+
+{% endblock body  %}
