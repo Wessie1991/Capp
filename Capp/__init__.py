@@ -5,7 +5,7 @@ from flask_login import (LoginManager, UserMixin,
 
 from flask_socketio import SocketIO, emit, join_room, leave_room
 
-from models import *
+from .models import *
 
 
 from flask_session import Session
