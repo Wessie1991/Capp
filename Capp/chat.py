@@ -1,4 +1,5 @@
 from Capp import *
+from Capp.views import *
 
 class Socket:
     def __init__(self, sid):
@@ -44,6 +45,12 @@ def open_chat(message):
     else:
         # twee gebruikers hebben elkaar gevonden
         pass
+
+    # update the database dat het bericht is gezien
+    chat = Chats.query.filter(and_(Chats.users_receiver == session['email'],
+                            Chats.see_flag == 'no')).update(dict(see_flag='yes'))
+    db.session.commit()
+
     print('in welke room ben ik', session['current_room'])
     message_list[session['current_room']] = []
     if message_list[session['current_room']] == []:
@@ -73,25 +80,28 @@ def open_chat(message):
 def new_message_flag(user_send, friend_receive, current_room):
     print('welke vriend krijg  het bericht: ', friend_receive)
     if len(room_list[current_room]) == 1:
+        # ontvanger zit in een adnere kamer.
         if clients_ids[friend_receive] != []:
             clients_ids[friend_receive].emit('noificatie', {'frind_notification' : session['email']})
-
-
-
+            return 'no'
+        else:
+            # user is waarschijnlijk uitgelogt
+            return 'no'
+    elif len(room_list[current_room]) == 2:
+        # ontvanger zit in de zelfde kamer.
+        return 'yes'
     elif len(room_list[current_room]) > 2:
         # verwijderen van dubbelen mensen
         room_list[session['current_room']]=list(unique_everseen(room_list[session['current_room']]))
 
 
 
-
-
 @socketio.on('send_message', namespace='/chat')
 def send_message(message):
-    new_message_flag(session['email'], message['friend_email'], session['current_room'])
+    flag = new_message_flag(session['email'], message['friend_email'], session['current_room'])
     message_list[session['current_room']].append({'data' : message['data'], 'user' : session['email']})
-    friend_object[session['current_room']].new_message(session['email'], message['friend_email'], message['data'])
-
+    ob = Friendlist.query.get(session['current_room'])
+    ob.new_message(session['email'], message['friend_email'], message['data'], flag)
     # de 30 moet variable zijn
     x=1
     if len(message_list[session['current_room']]) >= x*30:
@@ -107,4 +117,28 @@ def test_connect():
     print('we zijn verbonden')
     clients_ids[session['email']] = Socket(request.sid)
 
-    emit('my_response', {'data' : ' eerste heeft plaats gevonden connect'})
+    emit('connect_all', {'data' : session['email']}, broadcast=True)
+
+
+    #friend_requist = Friendlist.query.filter(and_(Friendlist.email_users_friend == session['email'],
+    #                            Friendlist.accept == None)).with_entities(
+    #                            Friendlist.email_users, Friendlist.id).first()
+
+
+
+@socketio.on('logout_acion', namespace='/chat')
+def logout(message):
+    leave_room(session['current_room'], sid=None, namespace='/chat')
+    print('Client is logging out!!!')
+    emit('disconnect_all', {'data' : session['email']}, broadcast=True)
+#when browser is close
+@socketio.on('disconnect', namespace='/chat')
+def test_disconnect():
+    logout_user()
+    print(session['email'])
+    if session['current_room'] != None:
+        leave_room(session['current_room'], sid=None, namespace='/chat')
+        room_list[session['current_room']].remove(session['email']);
+    #del clients_ids[session['email']]
+    print('Client disconnected')
+    emit('disconnect_all', {'data' : session['email']}, broadcast=True)

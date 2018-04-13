@@ -50,3 +50,8 @@ a.friend_list{
   text-align: center;
   background: rgb(255,112,0);
 }
+
+.icon{
+  <!-- #428bca default color  -->
+   color: red;
+}

@@ -1,27 +1,41 @@
 
-<div class="col-lg-3 sidebar">
+<div class="col-lg-3 col-sm-3 sidebar">
             <div class="bg-white shadow">
 
 
               <div class="sidebar-menu">
 
-                <div class="sidebar-search-text">
-                    <input class="form-control" placeholder="Search Cranes in India" type="text">
+                <div class="input-group">
+                    <input id="inputSearch" class="form-control" placeholder="Search friends!!" type="text">
+
+                    <span class="input-group-btn">
+                      <button id="add_user" class="btn btn-primary" type="button">Add user</button>
+                    </span>
                 </div>
                 <!-- Sidebar navigation -->
-                <ul class="nav sidebar-nav">
+                <ul id="sidebar_nav" class="nav sidebar-nav">
                   {% for friend in friendList %}
-                  <li class="dropdown">
-                    <a id="{{ friend[0] }}" class="ripple-effect dropdown-toggle friend_list" data-friend="{{ friend[0] }}" data-toggle="dropdown">
-                      <span class="glyphicon glyphicon-user icon"></span>
-                      {{ friend[0] }}
-                      <div class="notification_circle {{ friend[0] }}" style="visibility: hidden"></div>
-                    </a>
-                  </li>
-
+                      <li id="liItem" class="dropdown">
+                      <a id="{{ friend.email_friend }}" class="ripple-effect dropdown-toggle friend_list" data-friend="{{ friend.email_friend }}" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user icon" style="color:{{ friend.status }}"></span>
+                        {{ friend.email_friend }}
+                      {% if mes_dic[friend.email_friend] > 0 %}
+                        <div class="notification_circle {{ friend.email_friend }}" style="visibility: visible"> {{ mes_dic[friend.email_friend] }} </div>
+                      {% else %}
+                        <div class="notification_circle {{ friend.email_friend }}" style="visibility: hidden"> {{ mes_dic[friend.email_friend] }} </div>
+                    {% endif %}
+                  </a>
+                </li>
                   {% endfor %}
+                  {% for wait_friend in waiting_list %}
+                    <li id="liItem" class="dropdown class_new_users_wait">
+                      <a id="{{ wait_friend }}" class="ripple-effect dropdown-toggle friend_list" data-friend="{{ wait_friend }}" data-toggle="dropdown" style="color:#ff6600">
+                    <span class="glyphicon glyphicon-time wait" ></span>
+                    {{ wait_friend }}
 
-
+                  </a>
+                </li>
+                {% endfor %}
 
                 </ul>
                 <!-- Sidebar divider -->

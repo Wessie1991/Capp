@@ -8,8 +8,16 @@
 {% block body  %}
 
 {% include "header.html" %}
+<script type="text/javascript">
+   const new_users = JSON.parse('{{usersList | tojson}}');
 
+
+</script>
+
+<script type="text/javascript" src="{{ url_for('static',filename='javascript/dbEvent.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static',filename='javascript/sidebar.js') }}"></script>
+
+
 
 {% include "sidebar.html" %}
 
@@ -17,16 +25,16 @@
   <script type="text/javascript" src="{{ url_for('static',filename='javascript/chat.js') }}"></script>
     <div class="container">
        <div class="row">
-      <div class="col-lg-6">
-        <div class="panel panel-primary">
-          <div class="panel-heading"><b id="friend_email"> Ishwar </b> <small>online</small></div>
+      <div class="col-lg-9 col-sm-9">
+        <div id="heading_panel" class="panel panel-primary">
+          <div  class="panel-heading"><b id="friend_email"> Ishwar </b> <small id="online_id">online</small></div>
           <div id="panel_body" class="panel-body"  style="background:url('http://subtlepatterns.com/patterns/geometry2.png');height: 300px; }">
           </div>
         </div>
         <div class="row">
             <form id='sendform'  autocomplete="off" >
             <div class="form-group">
-              <div class="col-lg-9">
+              <div class="col-lg-9 col-sm-9">
                 <input id="message"  class="form-control"  type="text">
               </div>
               <input id="sendsubmit" type="submit" value="Send" class="btn btn-success">
@@ -40,6 +48,4 @@
 
 
 <h1 id="log"> hallo </h1>
-
-
 {% endblock body  %}

@@ -1,12 +1,12 @@
 <div class="header-top">
     <div class="container">
         <div class="row">
-            <div class="header-content text-left col-lg-6">
+            <div class="header-content text-left col-lg-6 col-md-6">
                 <p><span>Email: </span><span id="email_user_id">{{ session.email }}</span></p>
             </div>
-            <div class="header-social text-right col-lg-6">
+            <div class="header-social text-right col-lg-6 col-md-6">
                 <a href="{{ url_for('friend') }}"><span class="glyphicon glyphicon-cog"></span></a>
-
+                <a id='logout' href="{{ url_for('logout') }}"><span  class="glyphicon glyphicon-log-out" ></span></a>
             </div>
         </div>
     </div>

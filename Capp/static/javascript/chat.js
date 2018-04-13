@@ -62,12 +62,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
       });
       var var_friend_email = document.querySelector('#friend_email').innerHTML;
-      notification = document.getElementsByClassName(`${var_friend_email  }`)
+      notification = document.getElementsByClassName(`${var_friend_email  }`);
+
       friend_list[msg.frind_notification] = 0;
       notification[0].style.visibility = 'hidden';
       // naar bendeden halen van het chat scherm
       var myChatBox = document.getElementById("panel_body");
       myChatBox.scrollTop = myChatBox.scrollHeight;
+      notification[0].offsetParent.childNodes.forEach((item) => {
+        if (item.nodeName == 'SPAN'){
+          console.log('kanker', item.nodeName);
+          online_flag = item.style.color;
+        }
+
+      });
+      // check of user is online
+
+      if (online_flag == 'red'){
+        online = document.querySelector('#online_id');
+        online.innerHTML = 'offline';
+        panel = document.querySelector('#heading_panel');
+        panel.className = "panel panel-danger";
+      }else {
+        online = document.querySelector('#online_id');
+        online.innerHTML = 'online';
+        panel = document.querySelector('#heading_panel');
+        panel.className = "panel panel-primary";
+      }
+
 
       document.querySelector('#chat_scherm').style.visibility = 'visible';
     });

@@ -1,1 +1,19 @@
 export FLASK_APP=export FLASK_APPxport FLASK_APP=/home/rekenmachine/CS50/Capp/Capp/views.py;export FLASK_DEBUG=1;flask run --host=0.0.0.0 --with-threads
+
+
+
+export FLASK_APP=export FLASK_APP=export FLASK_APP=/home/rekenmachine/CS50/Capp/Capp/views.py;export FLASK_DEBUG=1
+
+flask db init
+flask db migrate
+flask db upgrade
+
+
+_______
+
+export LANG=C.UTF-8;export LC_ALL=C.UTF-8;export FLASK_APP=export FLASK_APPxport FLASK_APP=/home/ubuntu/Capp/Capp/views.py;export FLASK_DEBUG=1;flask run --host=0.0.0.0 --with-threads
+
+
+
+
+ip webserver:http://192.168.178.11:5000
