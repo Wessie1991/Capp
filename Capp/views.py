@@ -153,9 +153,8 @@ def logout():
         del clients_ids[session['email']]
     except KeyError:
         pass
-    for key in session.keys():
-        session.pop(key)
 
+    session.clear()
 
 
     return redirect(url_for('login'))

@@ -149,12 +149,12 @@ document.addEventListener('DOMContentLoaded', function() {
     friend_list[msg.frind_notification] = notification[0].innerHTML;
 
     friend_list[msg.frind_notification] ++;
-    notification[0].innerHTML = friend_list[msg.frind_notification];  
+    notification[0].innerHTML = friend_list[msg.frind_notification];
 
     notification[0].style.visibility = 'visible';
     //email_user_id
 
-   });
+  });
 
    socket.on('connect_all', function(msg) {
      console.log(msg['data']);
