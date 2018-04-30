@@ -108,10 +108,14 @@ def register():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        new_user = User(email , password, 'offline' )
-        db.session.add(new_user)
-        db.session.commit()
-        return Response("Registered Successfully")
+        user = User.query.filter_by(email = email).first()
+        if user == None:
+            new_user = User(email , password, 'offline' )
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for('login'))
+        else:
+            return Response('<p>register failed: user already exist</p>')
     else:
         return render_template('registration.html')
 
